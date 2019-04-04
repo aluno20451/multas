@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Multas.Models.Agentes>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Listagem de Agentes</h2>
+
+<p>
+    <!--A primeira palavra é a que aparece no ecrã, a segunda chama a ação do Controller-->
+    @Html.ActionLink("Criar novo agente", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <!--Faz a label do Nome-->
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            <!--Faz a label do Esquadra-->
+            @Html.DisplayNameFor(model => model.Esquadra)
+        </th>
+        <th>
+            <!--Faz a label do Fotografia-->
+            @Html.DisplayNameFor(model => model.Fotografia)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Esquadra)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fotografia)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Detalhes", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Apagar", "Delete", new { id = item.ID })
+        </td>
+    </tr>
+}
+
+</table>
