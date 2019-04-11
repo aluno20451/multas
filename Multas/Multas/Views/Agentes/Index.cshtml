@@ -21,8 +21,7 @@
             @Html.DisplayNameFor(model => model.Esquadra)
         </th>
         <th>
-            <!--Faz a label do Fotografia-->
-            @Html.DisplayNameFor(model => model.Fotografia)
+            @Html.DisplayNameFor(model => model.Fotografia)          
         </th>
         <th></th>
     </tr>
@@ -36,7 +35,10 @@
             @Html.DisplayFor(modelItem => item.Esquadra)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Fotografia)
+            @*@Html.DisplayFor(modelItem => item.Fotografia)*@
+
+            @*quero mostrar a imagem do agente*@
+            <img src="~/imagens/@item.Fotografia" height="100"/>
         </td>
         <td>
             @Html.ActionLink("Editar", "Edit", new { id = item.ID }) |
