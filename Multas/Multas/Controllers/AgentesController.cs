@@ -40,16 +40,16 @@ namespace Multas.Controllers
                 return RedirectToAction("Index");
             }
             // SELECT * FROM Agentes WHERE Id=id
-            Agentes agentes = db.Agentes.Find(id);
+            Agentes agente = db.Agentes.Find(id);
 
             // O agente foi encontrado?
-            if (agentes == null)
+            if (agente == null)
             // o agente não foi encontrado, porque o utilizador está à pesca 
             {
                 //return HttpNotFound();
                 return RedirectToAction("Index");
             }
-            return View(agentes);
+            return View(agente);
         }
 
         // GET: Agentes/Create
