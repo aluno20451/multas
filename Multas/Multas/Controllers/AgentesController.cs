@@ -62,7 +62,7 @@ namespace Multas.Controllers
         // POST: Agentes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        
+
         /// <summary>
         /// Criação de um novo Agente
         /// </summary>
@@ -74,7 +74,7 @@ namespace Multas.Controllers
         public ActionResult Create([Bind(Include = "Nome,Esquadra")] Agentes agente,
                                     HttpPostedFileBase fotografia)
         {
-            string caminho="";
+            string caminho = "";
             bool haFicheiro = false;
 
             // 1º foi fornecida imagem?
@@ -86,14 +86,16 @@ namespace Multas.Controllers
                 // não há ficheiro
                 agente.Fotografia = "default.jpg";
             }
-            else {
-                if (fotografia.ContentType == "image/jpg" || fotografia.ContentType == "imagem/png") {
+            else
+            {
+                if (fotografia.ContentType == "image/jpg" || fotografia.ContentType == "image/png" || fotografia.ContentType == "image/jpeg")
+                {
                     // estamos perante um foto correta
                     string extensao = Path.GetExtension(fotografia.FileName).ToLower();
                     Guid g;
                     g = Guid.NewGuid();
                     // nome do ficheiro
-                    string nome = g.ToString()+extensao;
+                    string nome = g.ToString() + extensao;
                     // onde guardar o ficheiro
                     caminho = Path.Combine(Server.MapPath("~/imagens"), nome);
                     // atribuir ao agente o nome do ficheiro
@@ -111,16 +113,18 @@ namespace Multas.Controllers
                     db.Agentes.Add(agente);
                     // consolida os dados na BD
                     db.SaveChanges();
-                    if (haFicheiro) {
+                    if (haFicheiro)
+                    {
                         fotografia.SaveAs(caminho);
                     }
                     // redireciona o utilizador para o Index
                     return RedirectToAction("Index");
                 }
-                catch (Exception) {
+                catch (Exception)
+                {
                     ModelState.AddModelError("", "Ocorreu um Erro  com a escrita de dados do novo Agente");
                 }
-                
+
             }
 
             return View(agente);
